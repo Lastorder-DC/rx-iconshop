@@ -198,4 +198,14 @@ $lang->success_buy = "상품을 구입 했습니다.";
 $lang->success_send = "상품을 선물 했습니다.";
 $lang->success_sell = "상품을 판매 하였습니다. (+%d 획득)";
 $lang->success_isselected = "대표아이콘으로 설정되었습니다.";
-?>
+
+$lang->logged_message = "%s님 안녕하세요. | %s %s | 레벨 : %d";
+$lang->end_date_message = "사용기한 : %s";
+$lang->event_message = "%s ~ %s 한정판매";
+$lang->level_more = "레벨 : %d이상";
+$lang->null_shop= "등록된 상품이 없습니다.";
+$lang->null_myicon = "구입한 상품이 없습니다.";
+$lang->total_count = "수량";
+$lang->my_point = "내 포인트";
+$lang->send_my_point = "선물후 포인트";
+$lang->receive_srl = "받는이";
