@@ -209,3 +209,5 @@ $lang->total_count = "수량";
 $lang->my_point = "내 포인트";
 $lang->send_my_point = "선물후 포인트";
 $lang->receive_srl = "받는이";
+
+$lang->always_sell = "상시 판매";

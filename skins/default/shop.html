@@ -24,6 +24,10 @@
                     <p class="content">
                         {sprintf($lang->event_message,($val->event_start)?zDate($val->event_start,'Y/m/d'):"",($val->event_end)?zDate($val->event_end,'Y/m/d'):"")}
                     </p>
+                    <!--@else-->
+                    <p class="content">
+                        {$lang->always_sell}
+                    </p>
                     <!--@end-->
                     <p class="btn">
                     <!--@if($val->buy_limit != "Y")--><a onclick="iconBuy({$val->icon_srl});">{$lang->icon_buy}</a><!--@else--><s>{$lang->icon_buy}</s><!--@end--> <span class="bar">|</span>
