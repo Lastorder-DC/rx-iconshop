@@ -29,8 +29,10 @@
                         {$lang->always_sell}
                     </p>
                     <!--@end-->
+                    <p class="btn" style="margin-right: 10px;">
+                    <!--@if($val->buy_limit != "Y")--><a onclick="iconBuy({$val->icon_srl});">{$lang->icon_buy}</a><!--@else--><s>{$lang->icon_buy}</s><!--@end-->
+                    </p>&nbsp;&nbsp;
                     <p class="btn">
-                    <!--@if($val->buy_limit != "Y")--><a onclick="iconBuy({$val->icon_srl});">{$lang->icon_buy}</a><!--@else--><s>{$lang->icon_buy}</s><!--@end--> <span class="bar">|</span>
                     <!--@if($val->send_limit != "Y")--><a href="{getUrl('module','iconshop','act','dispIconshopIconSend','icon_srl',$val->icon_srl)}" onclick="popopen(this.href,'iconSend');return false;">{$lang->icon_send}</a><!--@else--><s>{$lang->icon_send}</s><!--@end-->
                     </p>
                 </div>
