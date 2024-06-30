@@ -38,3 +38,5 @@
 .icon_data .info .btn a:hover,
 .icon_data .info .btn a:active,
 .icon_data .info .btn a:focus{ text-decoration:underline;} 
+
+.icon_data .info .btn { margin-right: 5px; }
