@@ -20,11 +20,6 @@
                 <div class="info">
                     <p class="title">{$val->title} {$val->icon}</p>
                     <p class="content">{$val->price2} <span class="bar">|</span> {sprintf("%s : %s",$lang->total_count,$val->total_count2)}</p>
-                    <p class="content">
-                        {sprintf("%s : %s",$lang->minute_limit,$val->minute2)}
-                        <span class="bar">|</span>
-                        {sprintf($lang->level_more,$val->level_limit)}
-                    </p>
                     <!--@if($val->event_limit == "Y")-->
                     <p class="content">
                         {sprintf($lang->event_message,($val->event_start)?zDate($val->event_start,'Y/m/d'):"",($val->event_end)?zDate($val->event_end,'Y/m/d'):"")}
