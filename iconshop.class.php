@@ -292,7 +292,7 @@ class iconshop extends ModuleObject
 			$oDB->dropTable('iconshop_admin');
 			$admin_database_file = _XE_PATH_ . 'modules/schemas/iconshop_admin.xml';
 			$admin_delete_output = FileHandler::removeFile($admin_database_file);
-			if(!$admin_delete_output->toBool())
+			if(!$admin_delete_output)
 			{
 				return $admin_delete_output;
 			}
