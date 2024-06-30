@@ -183,7 +183,7 @@ class iconshop extends ModuleObject
 		$oAddonAdminController->doActivate('member_icon_print', $site_module_info->site_srl);
 		$oAddonAdminController->makeCacheFile($site_module_info->site_srl);
 
-		return new Object();
+		return new BaseObject();
 	}
 
 	/**
@@ -396,7 +396,7 @@ class iconshop extends ModuleObject
 		}
 		$oAddonAdminController->makeCacheFile($site_module_info->site_srl);
 
-		return new Object(0, 'success_updated');
+		return new BaseObject(0, 'success_updated');
 	}
 
 	function moduleUninstall()
@@ -404,7 +404,7 @@ class iconshop extends ModuleObject
 		// iconshop 모듈에서 사용한 디렉토리 삭제
 		FileHandler::removeDir(_XE_PATH_ . 'files/iconshop');
 
-		return new Object();
+		return new BaseObject();
 	}
 
 	/**

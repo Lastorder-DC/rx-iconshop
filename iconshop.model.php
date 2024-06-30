@@ -352,7 +352,7 @@ class iconshopModel extends iconshop
 		$day_price = intval(Context::get('day_price'));
 		if(!is_numeric($day_price))
 		{
-			return new Object(-1, '가격정보를 가져오는 과정에서 문제가 발생했습니다.');
+			return new BaseObject(-1, '가격정보를 가져오는 과정에서 문제가 발생했습니다.');
 		}
 
 		$icon_info = $this->getIconBySrl($icon_srl);

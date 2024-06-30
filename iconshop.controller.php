@@ -28,7 +28,7 @@ class iconshopController extends iconshop
 		$logged_info = Context::get('logged_info');
 		if(!Context::get('is_logged'))
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new BaseObject(-1, 'msg_not_permitted');
 		}
 
 		$obj = Context::getRequestVars();
@@ -45,7 +45,7 @@ class iconshopController extends iconshop
 
 		if(!$obj->icon_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 		if($obj->is_selected != 'Y')
 		{
@@ -61,38 +61,38 @@ class iconshopController extends iconshop
 		$icon_data = $oIconshopModel->getIconBySrl($obj->icon_srl);
 		if(!$icon_data)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 이미 보유하고 있는지 검사..
 		$member_icon_data = $oIconshopModel->getMemberIconByIconSrl($icon_data->icon_srl, $logged_info->member_srl);
 		if($member_icon_data->data_srl)
 		{
-			return new Object(-1, 'already_icon');
+			return new BaseObject(-1, 'already_icon');
 		}
 
 		// 조건:그룹 검사
 		if($icon_data->group_limit && !$oIconshopModel->groupCheck($logged_info->group_list, $icon_data->group_limit_list))
 		{
-			return new Object(-1, 'group_limit_error');
+			return new BaseObject(-1, 'group_limit_error');
 		}
 
 		// 조건:갯수 검사
 		if(!$icon_data->total_count)
 		{
-			return new Object(-1, 'count_limit_error');
+			return new BaseObject(-1, 'count_limit_error');
 		}
 		// 조건:포인트 검사
 		if($icon_data->price > $logged_info->point)
 		{
-			return new Object(-1, 'point_limit_error');
+			return new BaseObject(-1, 'point_limit_error');
 		}
 		// 조건:최대 보유갯수 검사
 		$iconshop_config = self::getConfig();
 		$logged_info->icon_count = $oIconshopModel->getMemberIconCount($logged_info->member_srl);
 		if(($iconshop_config->member_max_count) && ($logged_info->icon_count >= $iconshop_config->member_max_count))
 		{
-			return new Object(-1, 'max_count_error');
+			return new BaseObject(-1, 'max_count_error');
 		}
 
 		$data_output = $this->insertIcondata($logged_info, $obj, $icon_data);
@@ -159,18 +159,18 @@ class iconshopController extends iconshop
 		$logged_info = Context::get('logged_info');
 		if(!Context::get('is_logged'))
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new BaseObject(-1, 'msg_not_permitted');
 		}
 
 		$obj = Context::getRequestVars();
 
 		if(!$obj->icon_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 		if(!$obj->receive_srl)
 		{
-			return new Object(-1, 'invalid_receive');
+			return new BaseObject(-1, 'invalid_receive');
 		}
 		if($obj->send_message != "Y")
 		{
@@ -181,7 +181,7 @@ class iconshopController extends iconshop
 		$icon_data = $oIconshopModel->getIconBySrl($obj->icon_srl);
 		if(!$icon_data)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 보낸이의 포인트/레벨을 구해옴
@@ -193,11 +193,11 @@ class iconshopController extends iconshop
 		$receive_info = $oMemberModel->getMemberInfoByMemberSrl($obj->receive_srl);
 		if(!$receive_info->member_srl)
 		{
-			return new Object(-1, 'invalid_receive');
+			return new BaseObject(-1, 'invalid_receive');
 		}
 		if($receive_info->member_srl == $logged_info->member_srl)
 		{
-			return new Object(-1, 'send_target_error');
+			return new BaseObject(-1, 'send_target_error');
 		}
 		$receive_info->point = $oPointModel->getPoint($receive_info->member_srl);
 		$receive_info->point_level = $oPointModel->getLevel($receive_info->point, $point_config->level_step);
@@ -205,14 +205,14 @@ class iconshopController extends iconshop
 		// 조건:수량 검사
 		if(!$icon_data->total_count)
 		{
-			return new Object(-1, 'count_limit_error');
+			return new BaseObject(-1, 'count_limit_error');
 		}
 
 		// 이미 보유하고 있는지 검사.. (받는이)
 		$member_icon_data = $oIconshopModel->getMemberIconByIconSrl($icon_data->icon_srl, $receive_info->member_srl);
 		if($member_icon_data->data_srl)
 		{
-			return new Object(-1, 'already_icon');
+			return new BaseObject(-1, 'already_icon');
 		}
 
 		// 조건:최대 보유갯수 검사 (받는이)
@@ -220,7 +220,7 @@ class iconshopController extends iconshop
 		$receive_info->icon_count = $oIconshopModel->getMemberIconCount($receive_info->member_srl);
 		if(($iconshop_config->member_max_count) && ($receive_info->icon_count >= $iconshop_config->member_max_count))
 		{
-			return new Object(-1, 'max_count_error');
+			return new BaseObject(-1, 'max_count_error');
 		}
 
 		// 조건:그룹 검사 (보낸이/받는이)
@@ -228,18 +228,18 @@ class iconshopController extends iconshop
 		{
 			if(!$oIconshopModel->groupCheck($logged_info->group_list, $icon_data->group_limit_list))
 			{
-				return new Object(-1, 'group_limit_error');
+				return new BaseObject(-1, 'group_limit_error');
 			}
 			if(!$oIconshopModel->groupCheck($receive_info->group_list, $icon_data->group_limit_list))
 			{
-				return new Object(-1, 'group_limit_error');
+				return new BaseObject(-1, 'group_limit_error');
 			}
 		}
 
 		// 조건:포인트 검사 (보낸이)
 		if($icon_data->price > $logged_info->point)
 		{
-			return new Object(-1, 'point_limit_error');
+			return new BaseObject(-1, 'point_limit_error');
 		}
 
 		$data_output = $this->insertIcondata($receive_info, $obj, $icon_data);
@@ -343,7 +343,7 @@ class iconshopController extends iconshop
 		// 권한 체크
 		if(!Context::get('is_logged'))
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new BaseObject(-1, 'msg_not_permitted');
 		}
 
 		$logged_info = Context::get('logged_info');
@@ -352,20 +352,20 @@ class iconshopController extends iconshop
 		$params = Context::gets('data_srl');
 		if(!$params->data_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 보유하고 있는지 검사..
 		$member_icon_data = $oIconshopModel->getMemberIconByDataSrl($params->data_srl);
 		if(!$member_icon_data->data_srl || $member_icon_data->member_srl != $logged_info->member_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 이미 대표아이콘이면..
 		if($member_icon_data->is_selected == 'Y')
 		{
-			return new Object(-1, 'already_isselected');
+			return new BaseObject(-1, 'already_isselected');
 		}
 
 		// 회원DB에서 변경
@@ -389,7 +389,7 @@ class iconshopController extends iconshop
 		// 권한 체크
 		if(!Context::get('is_logged'))
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new BaseObject(-1, 'msg_not_permitted');
 		}
 		$logged_info = Context::get('logged_info');
 
@@ -397,14 +397,14 @@ class iconshopController extends iconshop
 		$params = Context::gets('data_srl');
 		if(!$params->data_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 보유하고 있는지 검사..
 		$member_icon_data = $oIconshopModel->getMemberIconByDataSrl($params->data_srl);
 		if(!$member_icon_data->data_srl || $member_icon_data->member_srl != $logged_info->member_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 상품정보 구해옴
@@ -413,7 +413,7 @@ class iconshopController extends iconshop
 		// 조건: 판매가능여부
 		if($icon_data->sell_limit != 'Y')
 		{
-			return new Object(-1, 'sell_limit_error');
+			return new BaseObject(-1, 'sell_limit_error');
 		}
 
 		// 포인트차감이 Y일경우 포인트 +
@@ -500,7 +500,7 @@ class iconshopController extends iconshop
 		// 권한 체크
 		if(!Context::get('is_logged'))
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new BaseObject(-1, 'msg_not_permitted');
 		}
 		$logged_info = Context::get('logged_info');
 
@@ -508,14 +508,14 @@ class iconshopController extends iconshop
 		$params = Context::gets('data_srl');
 		if(!$params->data_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 보유하고 있는지 검사..
 		$member_icon_data = $oIconshopModel->getMemberIconByDataSrl($params->data_srl);
 		if(!$member_icon_data->data_srl || $member_icon_data->member_srl != $logged_info->member_srl)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 상품정보 구해옴

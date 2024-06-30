@@ -16,7 +16,7 @@ class iconshopView extends iconshop
 	{
 		if(!$this->grant->access)
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new BaseObject(-1, 'msg_not_permitted');
 		}
 
 		$oModuleModel = getModel('module');
@@ -92,7 +92,7 @@ class iconshopView extends iconshop
 	{
 		if(!Context::get('is_logged'))
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new BaseObject(-1, 'msg_not_permitted');
 		}
 		$oPointModel = getModel('point');
 		$oModuleModel = getModel('module');
@@ -141,25 +141,25 @@ class iconshopView extends iconshop
 		$icon_data = $oIconshopModel->getIconBySrl($icon_srl);
 		if(!$icon_data)
 		{
-			return new Object(-1, 'invalid_icon');
+			return new BaseObject(-1, 'invalid_icon');
 		}
 
 		// 조건:그룹 검사
 		if($icon_data->group_limit && !$oIconshopModel->group_check($logged_info->group_list, $icon_data->group_limit_list))
 		{
-			return new Object(-1, 'group_limit_error');
+			return new BaseObject(-1, 'group_limit_error');
 		}
 
 		// 조건:갯수 검사
 		if(!$icon_data->total_count)
 		{
-			return new Object(-1, 'count_limit_error');
+			return new BaseObject(-1, 'count_limit_error');
 		}
 
 		// 조건:포인트 검사
 		if($icon_data->price > $logged_info->point)
 		{
-			return new Object(-1, 'point_limit_error');
+			return new BaseObject(-1, 'point_limit_error');
 		}
 
 		Context::set('menu', 'my_icon');

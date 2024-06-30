@@ -28,7 +28,7 @@ class iconshopAdminController extends iconshop
 		$args->module = 'iconshop';
 		if(!$args->module_srl)
 		{
-			return new Object(-1, 'invalid_module');
+			return new BaseObject(-1, 'invalid_module');
 		}
 
 		// module_srl의 값에 따라 insert/update
@@ -142,7 +142,7 @@ class iconshopAdminController extends iconshop
 		$obj = new stdClass();
 		if(!$args->title)
 		{
-			return new Object(-1, 'null_title');
+			return new BaseObject(-1, 'null_title');
 		}
 
 		// icon_srl이 있으면 원본 데이터 가져오기
@@ -153,20 +153,20 @@ class iconshopAdminController extends iconshop
 			$icon_data = $oIconshopModel->getIconBySrl($args->icon_srl);
 			if(!$icon_data)
 			{
-				return new Object(-1,'invalid_icon');
+				return new BaseObject(-1,'invalid_icon');
 			}
 			$obj->file1 = $icon_data->file1;
 
 			// 원본데이터의 file1이 없고, 업로드한 파일도 없으면..
 			if((!$icon_data->file1) && (!$args->file1['tmp_name'] || !is_uploaded_file($args->file1['tmp_name'])))
 			{
-				return new Object(-1, 'null_file1');
+				return new BaseObject(-1, 'null_file1');
 			}
 		}
 
 		if($icon_data === null && (!$args->file1['tmp_name'] || !is_uploaded_file($args->file1['tmp_name'])))
 		{
-			return new Object(-1, 'null_file1');
+			return new BaseObject(-1, 'null_file1');
 		}
 
 
@@ -284,7 +284,7 @@ class iconshopAdminController extends iconshop
 		$icon_srls = Context::get('icon_srls');
 		if(!$icon_srls)
 		{
-			return new Object(-1, 'msg_cart_is_null');
+			return new BaseObject(-1, 'msg_cart_is_null');
 		}
 
 		$icon_srl_list = explode(",", $icon_srls);
@@ -324,7 +324,7 @@ class iconshopAdminController extends iconshop
 		$data_srls = Context::get('data_srls');
 		if(!$data_srls)
 		{
-			return new Object(-1, 'msg_cart_is_null');
+			return new BaseObject(-1, 'msg_cart_is_null');
 		}
 
 		$data_srl_list = explode(",", $data_srls);
@@ -353,7 +353,7 @@ class iconshopAdminController extends iconshop
 		$data_srls = Context::get('data_srls');
 		if(!$data_srls)
 		{
-			return new Object(-1, 'msg_cart_is_null');
+			return new BaseObject(-1, 'msg_cart_is_null');
 		}
 
 		$data_srl_list = explode(",", $data_srls);
