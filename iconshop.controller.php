@@ -257,7 +257,7 @@ class iconshopController extends iconshop
 		}
 
 		// 회원의 포인트 차감
-		if($icon_data->price && $icon_data->point_limit == "Y")
+		if($icon_data->price)
 		{
 			$oPointController = getController('point');
 			$oPointController->setPoint($logged_info->member_srl, $point, 'minus');
