@@ -64,7 +64,7 @@ class iconshopView extends iconshop
 		$logged_info->point_level = $oPointModel->getLevel($logged_info->point, $point_config->level_step);
 
 		// 상품정보 가져오기
-		$icon_list = $oIconshopModel->getShopIconList(10);
+		$icon_list = $oIconshopModel->getShopIconList(20);
 		$myIconSrlNumber = $oIconshopModel->getMyIconListByIndex();
 
 		$myIconSrls = array();
