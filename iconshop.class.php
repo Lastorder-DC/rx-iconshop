@@ -333,7 +333,7 @@ class iconshop extends ModuleObject
 			$oDB->dropTable('iconshop_member');
 			$member_database_file = _XE_PATH_ . 'modules/schemas/iconshop_member.xml';
 			$member_delete_output = FileHandler::removeFile($member_database_file);
-			if(!$member_delete_output->toBool())
+			if(!$member_delete_output)
 			{
 				return $member_delete_output;
 			}
