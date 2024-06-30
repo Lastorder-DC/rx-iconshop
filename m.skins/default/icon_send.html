@@ -24,15 +24,16 @@
                 <div class="info">
                     <p class="title">{$icon_data->title} {$icon_data->icon}</p>
                     <p class="content">{$icon_data->price2} <span class="bar">|</span> {sprintf("%s : %s",$lang->total_count,$icon_data->total_count2)} <span class="bar">|</span> {sprintf($lang->level_more,$icon_data->level_limit)}</p>
-                    <p class="content">
-                        {sprintf("%s : %s",$lang->minute_limit,$icon_data->minute2)}
-                    </p>
                     <!--@if($icon_data->event_limit == "Y")-->
                     <p class="content">
                         {sprintf($lang->event_message,($icon_data->event_start)?zDate($icon_data->event_start,'Y/m/d'):"",($icon_data->event_end)?zDate($icon_data->event_end,'Y/m/d'):"")}
                     </p>
+                    <!--@else-->
+                    <p class="content">
+                        {$lang->always_sell}
+                    </p>
                     <!--@end-->
-                    <p class="btn">
+                    <p class="content">
                         {$lang->my_point} : {$logged_info->point}{$point_name}<br />
                         {$lang->icon_price} : {$icon_data->price}{$point_name} <!--@if($icon_data->price && $iconshop_config->send_fee)-->({$lang->fee} {$iconshop_config->send_fee}%) = {$point}{$point_name}<!--@end--><br />
                         
