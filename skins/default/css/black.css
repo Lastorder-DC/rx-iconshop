@@ -17,3 +17,5 @@
 .icon_data .info .btn { color:#ccc; }
 .icon_data .info .btn a { color:#333; }
 .icon_data .info .content { color:#7b797b; }
+
+.pagination a, .pagination strong { color: #fff; }
