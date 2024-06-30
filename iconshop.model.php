@@ -67,7 +67,7 @@ class iconshopModel extends iconshop
 
 		// 기타 변수들 정리
 		$args->page = Context::get('page');
-		$args->list_count = ($iconshop_config->list_count) ? $iconshop_config->list_count : 10;
+		$args->list_count = ($iconshop_config->list_count) ? $iconshop_config->list_count : $list_count;
 		$args->page_count = (int)$page_count;
 
 		$output = executeQueryArray("iconshop.getIconList", $args);
