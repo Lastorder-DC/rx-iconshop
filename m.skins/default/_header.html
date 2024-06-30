@@ -8,7 +8,7 @@
 <!--@if($iconshop_info->header_text)-->{nl2br($iconshop_info->header_text)}<!--@end-->
 <div id="iconshop_layout">
     <div id="iconshop_header">
-        <!--@if($iconshop_config->member_info_print == "Y")--><div class="iconshop_member_info">{sprintf($lang->logged_message,$logged_info->nick_name,number_format($logged_info->point),$point_name,$logged_info->point_level)}</div><!--@end-->
+        <div class="iconshop_member_info">{sprintf($lang->logged_message,$logged_info->nick_name,number_format($logged_info->point),$point_name,$logged_info->point_level)}</div>
         <div class="iconshop_tabmenu">
             <ul>
                 <!--@foreach($iconshop_main_menu as $key => $val)-->

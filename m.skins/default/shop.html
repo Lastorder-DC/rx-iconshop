@@ -20,19 +20,18 @@
                 <div class="info">
                     <p class="title">{$val->title} {$val->icon}</p>
                     <p class="content">{$val->price2} <span class="bar">|</span> {sprintf("%s : %s",$lang->total_count,$val->total_count2)}</p>
-                    <p class="content">
-                        {sprintf("%s : %s",$lang->minute_limit,$val->minute2)}
-                        <span class="bar">|</span>
-                        {sprintf($lang->level_more,$val->level_limit)}
-                    </p>
                     <!--@if($val->event_limit == "Y")-->
                     <p class="content">
                         {sprintf($lang->event_message,($val->event_start)?zDate($val->event_start,'Y/m/d'):"",($val->event_end)?zDate($val->event_end,'Y/m/d'):"")}
                     </p>
+                    <!--@else-->
+                    <p class="content">
+                        {$lang->always_sell}
+                    </p>
                     <!--@end-->
                     <p class="btn">
-                    <!--@if($val->buy_limit == "Y")--><a onclick="iconBuy({$val->icon_srl});">{$lang->icon_buy}</a><!--@else--><s>{$lang->icon_buy}</s><!--@end--> <span class="bar">|</span>
-                    <!--@if($val->send_limit == "Y")--><a href="{getUrl('module','iconshop','act','dispIconshopIconSend','icon_srl',$val->icon_srl)}" onclick="popopen(this.href,'iconSend');return false;">{$lang->icon_send}</a><!--@else--><s>{$lang->icon_send}</s><!--@end-->
+                    <!--@if($val->buy_limit != "Y")--><a onclick="iconBuy({$val->icon_srl});">{$lang->icon_buy}</a><!--@else--><s>{$lang->icon_buy}</s><!--@end--> <span class="bar">|</span>
+                    <!--@if($val->send_limit != "Y")--><a href="{getUrl('module','iconshop','act','dispIconshopIconSend','icon_srl',$val->icon_srl)}" onclick="popopen(this.href,'iconSend');return false;">{$lang->icon_send}</a><!--@else--><s>{$lang->icon_send}</s><!--@end-->
                     </p>
                 </div>
             </div>
