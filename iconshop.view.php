@@ -211,6 +211,7 @@ class iconshopView extends iconshop
 		}
 
 		// 레이아웃을 팝업으로 지정
+		$this->setLayoutPath('./common/tpl/');
 		$this->setLayoutFile('popup_layout');
 
 		// 예외적으로 템플릿경로 변경
