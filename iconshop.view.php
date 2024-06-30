@@ -123,6 +123,7 @@ class iconshopView extends iconshop
 	 **/
 	function dispIconshopIconSend()
 	{
+		$this->setLayoutPath('./common/tpl/');
 		$this->setLayoutFile('popup_layout');
 		$oPointModel = getModel('point');
 		$oModuleModel = getModel('module');
