@@ -442,32 +442,24 @@ class iconshopController extends iconshop
 		// 상품정보 구해옴
 		$icon_data = $oIconshopModel->getIconBySrl($member_icon_data->icon_srl);
 
-		// 포인트차감이 Y일경우 포인트 +
-		if($icon_data->point_limit == 'Y')
+		// 이 상품에 대한 로그정보 구해옴
+		$log_data = $oIconshopModel->getLogByDataSrl($member_icon_data->data_srl);
+		$point = (int)$log_data->point; // 구입시 소모한 포인트
+		if(!$log_data->data_srl)
 		{
-			// 이 상품에 대한 로그정보 구해옴
-			$log_data = $oIconshopModel->getLogByDataSrl($member_icon_data->data_srl);
-			$point = (int)$log_data->point; // 구입시 소모한 포인트
-			if(!$log_data->data_srl)
-			{
-				$point = (int)$icon_data->price;
-			} // 로그기록이 없으면 현재상품의 가격으로 대체...
+			$point = (int)$icon_data->price;
+		} // 로그기록이 없으면 현재상품의 가격으로 대체...
 
-			// 모듈설정 가져옴
-			$iconshop_config = self::getConfig();
-			$sell_per = (int)$iconshop_config->sell_per;
+		// 모듈설정 가져옴
+		$iconshop_config = self::getConfig();
+		$sell_per = (int)$iconshop_config->sell_per;
 
-			// 돌려줄 포인트가 있으면 point+
-			if($point && $sell_per)
-			{
-				$point = floor($point * $sell_per / 100);
-				$oPointController = getController('point');
-				$oPointController->setPoint($logged_info->member_srl, $point, 'add');
-			}
-		}
-		else
+		// 돌려줄 포인트가 있으면 point+
+		if($point && $sell_per)
 		{
-			$point = 0;
+			$point = floor($point * $sell_per / 100);
+			$oPointController = getController('point');
+			$oPointController->setPoint($logged_info->member_srl, $point, 'add');
 		}
 
 		// 상품 회원DB에서 삭제
