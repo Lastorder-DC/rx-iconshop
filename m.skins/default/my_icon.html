@@ -20,10 +20,11 @@
                 <div class="info">
                     <p class="title">{$val->title}</p>
                     <p class="content">{sprintf($lang->end_date_message,$val->end_date2)}</p>
+                    <p class="btn" cond="$val->is_selected != 'Y'">
+                        <a onclick="iconSelected({$val->data_srl});">{$lang->is_selected}</a>
+                    </p>
                     <p class="btn">
-                    <!--@if($val->is_selected!="Y")--><a onclick="iconSelected({$val->data_srl});">{$lang->is_selected}</a> <span class="bar">|</span><!--@end-->
-                    <!--@if($val->sell_limit == "Y")--><a onclick="iconSell({$val->data_srl});">{$lang->icon_sell}</a><!--@else--><s>{$lang->icon_sell}</s><!--@end--> <span class="bar">|</span>
-                    <a onclick="iconDelete({$val->data_srl});">{$lang->icon_delete}</a>
+                        <!--@if($val->sell_limit != "Y")--><a onclick="iconSell({$val->data_srl});">{$lang->icon_sell}</a><!--@else--><s>{$lang->icon_sell}</s><!--@end-->
                     </p>
                 </div>
             </div>
