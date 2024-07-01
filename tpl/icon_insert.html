@@ -30,68 +30,6 @@
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label class="x_control-label" for="lang_browser_title">{$lang->buy_limit}</label>
-			<div class="x_controls">
-				<select name="buy_limit">
-					<!--@foreach($lang->iconshop_checked_list as $key=>$val)-->
-					<option value="{$key}" <!--@if($key==$icon_data->buy_limit)-->selected="selected"<!--@end-->>{$val}</option>
-					<!--@end-->
-				</select>
-				<a href="#buy_limit_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
-				<p id="buy_limit_help" class="x_help-block" hidden>{$lang->buy_limit_about}</p>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label class="x_control-label" for="lang_browser_title">{$lang->send_limit}</label>
-			<div class="x_controls">
-				<select name="send_limit">
-					<!--@foreach($lang->iconshop_checked_list as $key=>$val)-->
-					<option value="{$key}" <!--@if($key==$icon_data->send_limit)-->selected="selected"<!--@end-->>{$val}</option>
-					<!--@end-->
-				</select>
-				<a href="#send_limit_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
-				<p id="send_limit_help" class="x_help-block" hidden>{$lang->send_limit_about}</p>
-			</div>
-		</div>
-
-		<div class="x_control-group">
-			<label class="x_control-label" for="lang_browser_title">{$lang->sell_limit}</label>
-			<div class="x_controls">
-				<select name="sell_limit">
-					<!--@foreach($lang->iconshop_checked_list as $key=>$val)-->
-					<option value="{$key}" <!--@if($key==$icon_data->sell_limit)-->selected="selected"<!--@end-->>{$val}</option>
-					<!--@end-->
-				</select>
-				<a href="#sell_limit_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
-				<p id="sell_limit_help" class="x_help-block" hidden>{$lang->sell_limit_about}</p>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label class="x_control-label" for="lang_browser_title">{$lang->point_limit}</label>
-			<div class="x_controls">
-				<select name="point_limit">
-					<!--@foreach($lang->iconshop_checked_list as $key => $val)-->
-					<option value="{$key}" <!--@if($key==$icon_data->point_limit)-->selected="selected"<!--@end-->>{$val}</option>
-					<!--@end-->
-				</select>
-				<a href="#point_limit_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
-				<p id="point_limit_help" class="x_help-block" hidden>{$lang->point_limit_about}</p>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label class="x_control-label" for="lang_browser_title">{$lang->minute_limit}</label>
-			<div class="x_controls">
-				<select name="minute_limit">
-					<!--@foreach($lang->iconshop_checked_list2 as $key=>$val)-->
-					<option value="{$key}" <!--@if($key==$icon_data->minute_limit)-->selected="selected"<!--@end-->>{$val}</option>
-					<!--@end-->
-				</select>
-				<input type="text" name="minute" value="{$icon_data->minute}" />{$lang->unit_min}
-				<a href="#minute_limit_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
-				<p id="minute_limit_help" class="x_help-block" hidden>{$lang->minute_limit_about}</p>
-			</div>
-		</div>
-		<div class="x_control-group">
 			<label class="x_control-label" for="lang_browser_title">{$lang->event_limit}</label>
 			<div class="x_controls">
 				<select name="event_limit">
@@ -112,14 +50,6 @@
                 </span>
 				<a href="#event_limit_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
 				<p id="event_limit_help" class="x_help-block" hidden>{$lang->event_limit_about}</p>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label class="x_control-label" for="lang_browser_title">{$lang->level_limit}</label>
-			<div class="x_controls">
-				<input type="text" name="level_limit" value="{$icon_data->level_limit}" />
-				<a href="#level_limit_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
-				<p id="level_limit_help" class="x_help-block" hidden>{$lang->level_limit_about}</p>
 			</div>
 		</div>
 		<div class="x_control-group">
