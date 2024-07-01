@@ -442,12 +442,6 @@ class iconshopController extends iconshop
 		// 상품정보 구해옴
 		$icon_data = $oIconshopModel->getIconBySrl($member_icon_data->icon_srl);
 
-		// 조건: 판매가능여부
-		if($icon_data->sell_limit != 'Y')
-		{
-			return new BaseObject(-1, 'sell_limit_error');
-		}
-
 		// 포인트차감이 Y일경우 포인트 +
 		if($icon_data->point_limit == 'Y')
 		{
