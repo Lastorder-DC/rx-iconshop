@@ -151,6 +151,22 @@ class iconshopView extends iconshop
 			return new BaseObject(-1, 'group_limit_error');
 		}
 
+		// 조건:이벤트기간 검사
+		if($icon_data->event_limit == "Y")
+		{
+			$now = date("Ymd", time());
+			$event_start = zdate($icon_data->event_start, "Ymd");
+			$event_end = zdate($icon_data->event_end, "Ymd");
+			if($event_start && $now < $event_start)
+			{
+				return new Object(-1, 'event_limit_error');
+			}
+			if($event_end && $now > $event_end)
+			{
+				return new Object(-1, 'event_limit_error');
+			}
+		}
+
 		// 조건:갯수 검사
 		if(!$icon_data->total_count)
 		{
