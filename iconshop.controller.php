@@ -125,11 +125,12 @@ class iconshopController extends iconshop
 		}
 
 		// 상품의 갯수 -1
-		if($icon_data->total_count != -1)
+		if($icon_data->total_count > 0)
 		{
 			$icon_data->total_count = $icon_data->total_count - 1;
 			$this->updateIcon($icon_data);
 		}
+
 		// 대표아이콘 설정시 딴 아이콘의 is_selected 변경
 		if($obj->is_selected == "Y")
 		{
@@ -296,7 +297,7 @@ class iconshopController extends iconshop
 		}
 
 		// 상품의 갯수 -1
-		if($icon_data->total_count != -1)
+		if($icon_data->total_count > 0)
 		{
 			$icon_data->total_count = $icon_data->total_count - 1;
 			$this->updateIcon($icon_data);
@@ -468,26 +469,28 @@ class iconshopController extends iconshop
 		$args->member_srl = $logged_info->member_srl;
 		$this->deleteMemberIcon($args);
 
-		$args = new stdClass();
-		$args->icon_srl = $icon_data->icon_srl;
-		$args->total_count = $icon_data->total_count + 1;
-		$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
-		if(!$output->toBool())
-		{
-			return $output;
-		}
-		// 기존 상품들의 호환성을 위해서 추가.
-		else
-		{
-			if($args->total_count > $icon_data->set_total_count)
+		if($args->total_count >= 0) {
+			$args = new stdClass();
+			$args->icon_srl = $icon_data->icon_srl;
+			$args->total_count = $icon_data->total_count + 1;
+			$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
+			if(!$output->toBool())
 			{
-				$args = new stdClass();
-				$args->icon_srl = $icon_data->icon_srl;
-				$args->set_total_count = (int)$args->total_count;
-				$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
-				if(!$output->toBool())
+				return $output;
+			}
+			// 기존 상품들의 호환성을 위해서 추가.
+			else
+			{
+				if($args->total_count > $icon_data->set_total_count)
 				{
-					return $output;
+					$args = new stdClass();
+					$args->icon_srl = $icon_data->icon_srl;
+					$args->set_total_count = (int)$args->total_count;
+					$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
+					if(!$output->toBool())
+					{
+						return $output;
+					}
 				}
 			}
 		}
@@ -545,26 +548,28 @@ class iconshopController extends iconshop
 		$args->member_srl = $logged_info->member_srl;
 		$this->deleteMemberIcon($args);
 
-		$args = new stdClass();
-		$args->icon_srl = $icon_data->icon_srl;
-		$args->total_count = $icon_data->total_count + 1;
-		$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
-		if(!$output->toBool())
-		{
-			return $output;
-		}
-		// 호환성을 위해서 추가함.
-		else
-		{
-			if($args->total_count > $icon_data->set_total_count)
+		if($args->total_count >= 0) {
+			$args = new stdClass();
+			$args->icon_srl = $icon_data->icon_srl;
+			$args->total_count = $icon_data->total_count + 1;
+			$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
+			if(!$output->toBool())
 			{
-				$args = new stdClass();
-				$args->icon_srl = $icon_data->icon_srl;
-				$args->set_total_count = (int)$args->total_count;
-				$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
-				if(!$output->toBool())
+				return $output;
+			}
+			// 호환성을 위해서 추가함.
+			else
+			{
+				if($args->total_count > $icon_data->set_total_count)
 				{
-					return $output;
+					$args = new stdClass();
+					$args->icon_srl = $icon_data->icon_srl;
+					$args->set_total_count = (int)$args->total_count;
+					$output = executeQuery('iconshop.updateIconSetTotalCount', $args);
+					if(!$output->toBool())
+					{
+						return $output;
+					}
 				}
 			}
 		}

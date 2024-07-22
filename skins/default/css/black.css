@@ -2,20 +2,23 @@
 #iconshop_header .iconshop_member_info { color:#999; }
 
 /* TabMenu */
-#iconshop_header .iconshop_tabmenu ul{ border-bottom:1px solid #1e1e1e; }
-#iconshop_header .iconshop_tabmenu li a{ border:1px solid #333; background:#090909; color:#999; }
-#iconshop_header .iconshop_tabmenu li.active a{ border-bottom:1px solid #000; background:#000; color:#fff; }
+#iconshop_header .iconshop_tabmenu ul{ border-bottom:1px solid var(--color-gray-500); }
+#iconshop_header .iconshop_tabmenu li a{ border:1px solid #333; background:#090909; color:#999; transition: ease .2s;}
+#iconshop_header .iconshop_tabmenu li a:hover {background-color: var(--color-gray-900); color: var(--color-gray-050);}
+#iconshop_header .iconshop_tabmenu li.active a{ border-bottom:1px solid #000; background:#efefef; color:#333; }
 #iconshop_header .iconshop_tabmenu li.active li a{ color:#837f7f; }
 #iconshop_header .iconshop_tabmenu li li.more a{ color:#afafaf; }
-#iconshop_footer { border-top:1px solid #333; }
+#iconshop_footer { border-top:1px solid var(--color-gray-400); }
 
 /* 상품리스트 */
-.boardList td{ border-bottom:1px dotted #333; }
-.icon_data .image { border:1px solid #262626; }
-.icon_data .info .title { color:#fff; }
+.boardList td{ border-bottom:1px dotted var(--color-gray-400); }
+.icon_data .image { border:1px solid var(--color-gray-500); border-radius: 5px;}
+.icon_data .info .title { color:var(--color-gray-900); }
 .icon_data .info .bar { color:#181818; }
-.icon_data .info .btn { color:#ccc; }
-.icon_data .info .btn a { color:#333; }
+.icon_data .info .btn { color:#ccc; border-color: var(--color-gray-400); transition: ease .2s;}
+.icon_data .info .btn:hover {border-color: var(--color-gray-500);}
+.icon_data .info .btn a { color:var(--color-gray-900); background-color: var(--color-gray-050); transition: ease .2s;}
+.icon_data .info .btn a:hover {background-color: var(--color-white); color: var(--color-black);}
 .icon_data .info .content { color:#7b797b; }
 
-.pagination a, .pagination strong { color: #fff; }
+.pagination a, .pagination strong { color: var(--color-gray-900); border-radius: 3px;}
