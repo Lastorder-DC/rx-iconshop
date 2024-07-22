@@ -469,7 +469,7 @@ class iconshopController extends iconshop
 		$args->member_srl = $logged_info->member_srl;
 		$this->deleteMemberIcon($args);
 
-		if($args->total_count >= 0) {
+		if($icon_data->total_count >= 0) {
 			$args = new stdClass();
 			$args->icon_srl = $icon_data->icon_srl;
 			$args->total_count = $icon_data->total_count + 1;
@@ -548,7 +548,7 @@ class iconshopController extends iconshop
 		$args->member_srl = $logged_info->member_srl;
 		$this->deleteMemberIcon($args);
 
-		if($args->total_count >= 0) {
+		if($icon_data->total_count >= 0) {
 			$args = new stdClass();
 			$args->icon_srl = $icon_data->icon_srl;
 			$args->total_count = $icon_data->total_count + 1;
